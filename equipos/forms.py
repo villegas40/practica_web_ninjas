@@ -1,5 +1,5 @@
 from django import forms
-from .models import EquipoNinja
+from .models import EquipoNinja, Perfil
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -14,4 +14,4 @@ class SignupForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('username', 'birth_date', 'password1', 'password2', )

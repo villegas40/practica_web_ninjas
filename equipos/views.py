@@ -38,7 +38,7 @@ def signup_user_view(request):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db() # Carga la instancia de perfil crada por signal
-            user.profile.birth_date = form.cleaned_data.get('birth_date')
+            user.perfil.birth_date = form.cleaned_data.get('birth_date')
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username = user.username, password = raw_password)

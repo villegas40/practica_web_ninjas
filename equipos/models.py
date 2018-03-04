@@ -60,11 +60,13 @@ class Perfil(models.Model):
     birth_date = models.DateField(null = True, blank = True)
 
 # Buscar en models las diferentes instancias
-@receiver(post_save, sender = User)
-def update_perfil_usuario(sender, instance, created, **kwargs):
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
     if created:
-        userprofile.objects.create(user=instance)
-    instance.userprofile.save()
+        Perfil.objects.create(user=instance)
+    instance.perfil.save()
+
+
 '''
 Practica que sigue
 Generar un modelo para los ninjas en misiones
