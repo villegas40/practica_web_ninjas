@@ -3,7 +3,7 @@ from .forms import EquipoNinjaForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate # singup up
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm # Importar para singup
-from .forms import SignupForm, UserProfileForm # Formulario creado para el perfil
+from .forms import SignupForm # Formulario creado para el perfil
 from django.contrib.auth.models import User
 from django.views.generic import UpdateView
 from .models import Perfil
