@@ -28,4 +28,5 @@ urlpatterns = [
     path('index/', views.index, name = "index_view"),
     path('profile/', views.view_profile, name = "index_view"),
     path('logout/', auth_views.logout, {'template_name':'equipos/logout.html'}, name='logout'),
+    path('edit_profile/', views.edit_profile, name = 'edit_profile_view')
 ]

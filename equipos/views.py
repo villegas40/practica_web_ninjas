@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate # singup up
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm # Importar para singup
 from .forms import SignupForm # Formulario creado para el perfil
+from .forms import EditProfileForm # Formulario para editar perfil
 from django.contrib.auth.models import User
 from django.views.generic import UpdateView
 from .models import Perfil
@@ -64,6 +65,16 @@ def view_profile(request, pk=None):
         user = request.user
     args = {'user': user}
     return render(request, 'equipos/profile.html', args)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance = request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile/')
+    else:
+        form = EditProfileForm(instance = request.user)
+    return render(request, 'equipos/edit_profile.html', {'form': form})
 
 
 '''

@@ -2,6 +2,7 @@ from django import forms
 from .models import EquipoNinja, Perfil
 from django.contrib.auth.forms import UserCreationForm # Registrar usuario
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm # Para editar nuestro user
 
 class EquipoNinjaForm(forms.ModelForm):
     class Meta:
@@ -19,3 +20,8 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'user_name', 'user_last', 'birth_date', 'password1', 'password2', )
+
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'password')
