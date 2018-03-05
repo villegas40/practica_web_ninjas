@@ -16,10 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from equipos import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('equipo_edit/', views.equipo_view, name = 'equipo_edit'),
     path('signup/', views.signup_view, name = 'singup_view'),
     path('register/', views.signup_user_view, name = 'register_view'),
+    path('login/', auth_views.login, {'template_name': 'equipos/login.html'}, name = 'login'),
+    # path('perfil/', views.profile, name = "profile_view"),
+    path('index/', views.index, name = "index_view"),
+    path('profile/', views.view_profile, name = "index_view"),
+    path('logout/', auth_views.logout, {'template_name':'equipos/logout.html'}, name='logout'),
 ]

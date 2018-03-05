@@ -55,9 +55,14 @@ class Registro_Examen(models.Model):
 # Modelo para crear perfil de usuario registrado
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
+    user_name = models.CharField(max_length = 30, blank = True)
+    user_last = models.CharField(max_length = 30, blank = True)
     bio = models.TextField(max_length = 500, blank = True)
     location = models.CharField(max_length = 30, blank = True)
     birth_date = models.DateField(null = True, blank = True)
+
+    def __str__(self):
+        return self.user.username
 
 # Buscar en models las diferentes instancias
 @receiver(post_save, sender=User)
