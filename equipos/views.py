@@ -8,6 +8,8 @@ from .forms import EditProfileForm # Formulario para editar perfil
 from django.contrib.auth.models import User
 from django.views.generic import UpdateView
 from .models import Perfil
+from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
+from django.contrib.auth import update_session_auth_hash # Mantener al usuario en sesion despues de cambiar contraseña
 
 # Create your views here.
 def index(request):
@@ -70,11 +72,27 @@ def edit_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance = request.user)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            user.perfil.birth_date = form.cleaned_data.get('birth_date')
+            user.save()
             return redirect('/profile/')
     else:
         form = EditProfileForm(instance = request.user)
     return render(request, 'equipos/edit_profile.html', {'form': form})
+
+# Vista cambiar contraseña
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data = request.POST, user = request.user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('/profile/')
+        else:
+            return redirect('/change_password/')
+    else:
+        form = PasswordChangeForm(user = request.user)
+    return render(request, 'equipos/change_password.html', {'form': form})
 
 
 '''

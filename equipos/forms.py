@@ -22,6 +22,7 @@ class SignupForm(UserCreationForm):
         fields = ('username', 'user_name', 'user_last', 'birth_date', 'password1', 'password2', )
 
 class EditProfileForm(UserChangeForm):
+    birth_date = forms.DateField(help_text = 'Required. Format: YYYY-MM-DD')
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'password')
