@@ -104,3 +104,6 @@ def profile(request, username):
     user = User.objects.get(username = username)
     return render(request, 'equipos/perfil.html', {'user':user})
 '''
+'''
+Investigar middleware
+'''
