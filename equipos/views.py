@@ -42,6 +42,8 @@ def signup_view(request):
         form = UserCreationForm()
     return render(request, 'equipos/signup.html', {'form':form})
 
+# Checar bien el como guardar los datos del usuario
+# Checar plantilla y view
 def signup_user_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -51,7 +53,10 @@ def signup_user_view(request):
             user.perfil.birth_date = form.cleaned_data.get('birth_date')
             user.perfil.user_name = form.cleaned_data.get('user_name')
             user.perfil.user_last = form.cleaned_data.get('user_last')
+            user.first_name = user.perfil.user_name
+            user.last_name = user.perfil.user_last
             user.save()
+            # user.perfil.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username = user.username, password = raw_password)
             login(request, user)
@@ -76,6 +81,8 @@ def edit_profile(request):
         form = EditProfileForm(request.POST, instance = request.user)
         if form.is_valid():
             user = form.save()
+            user.perfil.user_name = user.first_name
+            user.perfil.user_last = user.last_name
             user.perfil.birth_date = form.cleaned_data.get('birth_date')
             user.save()
             return redirect('/profile/')
@@ -105,5 +112,8 @@ def profile(request, username):
     return render(request, 'equipos/perfil.html', {'user':user})
 '''
 '''
-Investigar middleware
+RECORDATORIO
+
+PARA EL PROYECTO QUE SE MOSTRARA AGREGAR CAMPO DE EMAIL Y QUE SEA
+REQUERIDO PARA PODER REGISTRARSE
 '''
