@@ -10,6 +10,7 @@ from django.views.generic import UpdateView
 from .models import Perfil
 from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
 from django.contrib.auth import update_session_auth_hash # Mantener al usuario en sesion despues de cambiar contraseña
+from django.contrib.auth.decorators import login_required # Decorador para que se necesite loguear para accesar ciertas vistas
 
 # Create your views here.
 def index(request):
@@ -60,6 +61,7 @@ def signup_user_view(request):
         form = SignupForm()
     return render(request, 'equipos/register.html', {'form': form})
 
+@login_required # Decorador (Investigar sobre middleware para cambiarlo por esto)
 def view_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)
@@ -68,6 +70,7 @@ def view_profile(request, pk=None):
     args = {'user': user}
     return render(request, 'equipos/profile.html', args)
 
+@login_required
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance = request.user)
@@ -81,6 +84,7 @@ def edit_profile(request):
     return render(request, 'equipos/edit_profile.html', {'form': form})
 
 # Vista cambiar contraseña
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data = request.POST, user = request.user)
