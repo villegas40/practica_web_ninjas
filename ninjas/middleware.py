@@ -16,6 +16,6 @@ class loginRequiredMiddleware:
     def process_view(self, request, view_func, view_args, view_kwargs):
         assert hasattr(request, 'user')
 
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             if True:
                 return redirect(settings.LOGIN_URL)
