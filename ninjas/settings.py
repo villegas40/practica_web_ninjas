@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'ninjas.middleware.loginRequiredMiddleware', # Dar de alta el middleware
+    # 'ninjas.middleware.loginRequiredMiddleware', # Dar de alta el middleware
 ]
 
 ROOT_URLCONF = 'ninjas.urls'
@@ -122,18 +122,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-LOGIN_REDIRECT_URL = '/index/'
-
 # Para MIDDLEWARE
-LOGIN_REDIRECT_URL = ''
+'''
+LOGIN_REDIRECT_URL = 'equipos/login'
 
-LOGIN_URL = ''
+LOGIN_URL = 'equipos/login'
 
 LOGIN_EXEMPT_URLS = (
     'login',
     'register',
     'logout'
 )
+'''
 
 # Setup Email Response for password
 EMAIL_USE_TLS = True
