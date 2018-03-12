@@ -24,7 +24,8 @@ from django.contrib.auth.views import (
     password_reset_done,
     password_reset_confirm,
     password_reset_complete
-    ) # En confirm debe ir un token buscar como hacerlo en 2.0
+    ) # En confirm debe ir un token buscar como hacerlo en 2.0}
+    # NOTA: No tengo ni idea, usar url de 1.11
 
 urlpatterns = [
     path('admin/', admin.site.urls),

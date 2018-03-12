@@ -122,12 +122,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
+# Si se trata de ingresar a una vista con login_required
+# Será redireccionado a la página de login
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/index'
+
 # Para MIDDLEWARE
 '''
-LOGIN_REDIRECT_URL = 'equipos/login'
-
-LOGIN_URL = 'equipos/login'
-
 LOGIN_EXEMPT_URLS = (
     'login',
     'register',
