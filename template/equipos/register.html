@@ -3,6 +3,7 @@
 
 {% block content %}
   <h2>Sing Up</h2>
+<div class = "container">
   <form method="post">
     {% csrf_token %}
 
@@ -19,6 +20,8 @@
     </p>
     {% endfor %}
 
-    <button type="submit" name="singup">Sing Up</button>
+    <button type="submit" class = "btn btn-secondary" name="singup">Sing Up</button>
   </form>
+  <br>
+</div>
 {% endblock %}

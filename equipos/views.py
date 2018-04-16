@@ -35,6 +35,7 @@ def signup_view(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            email = form.cleaned_data.get('email')
             user = authenticate(username=username, password = raw_password)
             login(request, user)
             return redirect('/signup/')
@@ -55,6 +56,7 @@ def signup_user_view(request):
             user.perfil.user_last = form.cleaned_data.get('user_last')
             user.first_name = user.perfil.user_name
             user.last_name = user.perfil.user_last
+            user.perfil.email = user.email
             user.save()
             # user.perfil.save()
             raw_password = form.cleaned_data.get('password1')

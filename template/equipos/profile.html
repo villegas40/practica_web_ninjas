@@ -3,9 +3,10 @@
 
 {% block content %}
   <h2>Profile</h2>
-  <p>Username:{{user}}</p>
+  <p>Username: {{user}}</p>
   <p>First name: {{user.first_name}}</p>
   <p>Last name: {{user.last_name}}</p>
   <p>Birth date: {{user.perfil.birth_date}}</p>
-  Edit Profile: <a href="http://127.0.0.1:8000/edit_profile/">Click here</a>
+  <p>Email: {{user.email}}</p>
+  Edit Profile: <a href="/edit_profile">Click here</a>
 {% endblock %}

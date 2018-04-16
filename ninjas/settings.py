@@ -137,9 +137,15 @@ LOGIN_EXEMPT_URLS = (
 '''
 
 # Setup Email Response for password
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'sastreriabeltran@gmail.com' # Crear correo
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sastreriabeltran2@gmail.com' # Crear correo
 EMAIL_HOST_PASSWORD = 'sastreria295'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # default django
+
+
+# Probar con servidor
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
