@@ -114,7 +114,7 @@ def add(request):
     cart = Cart(request.session)
     product = Products.objects.get(id=request.GET.get('id'))
     cart.add(product, price=product.precio, quantity=1)
-    return HttpResponse("Añadido al carrito")
+    return HttpResponse("Añadido al carritos")
 
 def show(request):
     return render(request, 'equipos/mostrar-carrito.html')
