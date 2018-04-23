@@ -52,11 +52,14 @@ class Registro_Examen(models.Model):
     #    return self.equipo
 
 # Modelo de los productos del carrito de compras
-class Productos(models.Model):
-    id_producto = models.AutoField(primary_key=True)
+class Product(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre_producto = models.CharField(max_length = 100)
     precio = models.DecimalField(max_digits=6,decimal_places=2)
     cantitad = models.IntegerField()
+
+    def __str__(self):
+        return self.nombre_producto
 
 
 # Modelo para crear perfil de usuario registrado

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect # Redirect singup
 from .forms import EquipoNinjaForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import login, authenticate # singup up
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm # Importar para singup
 from .forms import SignupForm # Formulario creado para el perfil
@@ -11,6 +11,8 @@ from .models import Perfil
 from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
 from django.contrib.auth import update_session_auth_hash # Mantener al usuario en sesion despues de cambiar contraseña
 from django.contrib.auth.decorators import login_required # Decorador para que se necesite loguear para accesar ciertas vistas
+from carton.cart import Cart # Importa de la aplicacion de carton_tags
+from .models import Products
 
 # Create your views here.
 def index(request):
@@ -107,7 +109,15 @@ def change_password(request):
         form = PasswordChangeForm(user = request.user)
     return render(request, 'equipos/change_password.html', {'form': form})
 
+# Agregar carrito de compras
+def add(request):
+    cart = Cart(request.session)
+    product = Products.objects.get(id=request.GET.get('id'))
+    cart.add(product, price=product.precio, quantity=1)
+    return HttpResponse("Añadido al carrito")
 
+def show(request):
+    return render(request, 'equipos/mostrar-carrito.html')
 '''
 def profile(request, username):
     user = User.objects.get(username = username)

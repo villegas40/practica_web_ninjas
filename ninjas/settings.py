@@ -150,3 +150,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # default django
 # Probar con servidor
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Para que fucnione el Carrito
+CART_PRODUCT_MODEL = '.models.Product'

@@ -51,4 +51,7 @@ urlpatterns = [
     name = 'password_reset_confirm'),
     re_path(r'^password_reset_complete/$', password_reset_complete, {'template_name':'reset/password_reset_complete.html',},
     name = 'password_reset_complete'),
+    path('mostrar_carrito/', views.show, name='mostrar_carrito_view'),
+    re_path(r'^agregar_carrito/$',views.add, name='agregar_carrito_view'),
+
 ]
