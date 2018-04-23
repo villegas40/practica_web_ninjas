@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from equipos import views
 from django.contrib.auth import views as auth_views
+from django.conf.urls import include
 
 # Importar las vistas genericas ofrecidas por django para resetear contraseña
 from django.contrib.auth.views import (
@@ -51,7 +52,8 @@ urlpatterns = [
     name = 'password_reset_confirm'),
     re_path(r'^password_reset_complete/$', password_reset_complete, {'template_name':'reset/password_reset_complete.html',},
     name = 'password_reset_complete'),
-    path('mostrar_carrito/', views.show, name='mostrar_carrito_view'),
-    re_path(r'^agregar_carrito/$',views.add, name='agregar_carrito_view'),
+    path('carrito/mostrar/', views.show, name='mostrar_carrito_view'),
+    re_path(r'^carrito/agregar/$',views.add, name='agregar_carrito_view'),
+    re_path(r'^shopping-cart/', include('shopping.urls')), # Este es test, borrar despues
 
 ]

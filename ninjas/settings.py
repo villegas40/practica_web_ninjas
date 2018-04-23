@@ -152,4 +152,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # default django
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Para que fucnione el Carrito
-CART_PRODUCT_MODEL = '.models.Product'
+CART_PRODUCT_MODEL = 'equipos.models.Product'

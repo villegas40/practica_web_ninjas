@@ -12,7 +12,7 @@ from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambi
 from django.contrib.auth import update_session_auth_hash # Mantener al usuario en sesion despues de cambiar contraseña
 from django.contrib.auth.decorators import login_required # Decorador para que se necesite loguear para accesar ciertas vistas
 from carton.cart import Cart # Importa de la aplicacion de carton_tags
-from .models import Products
+from .models import Product
 
 # Create your views here.
 def index(request):
@@ -110,12 +110,13 @@ def change_password(request):
     return render(request, 'equipos/change_password.html', {'form': form})
 
 # Agregar carrito de compras
+@login_required
 def add(request):
     cart = Cart(request.session)
-    product = Products.objects.get(id=request.GET.get('id'))
+    product = Product.objects.get(id=request.GET.get('id'))
     cart.add(product, price=product.precio, quantity=1)
-    return HttpResponse("Añadido al carritos")
-
+    return HttpResponse("Añadido al carrito.")
+@login_required
 def show(request):
     return render(request, 'equipos/mostrar-carrito.html')
 '''

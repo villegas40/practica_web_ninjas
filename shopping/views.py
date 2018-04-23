@@ -2,13 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from carton.cart import Cart
-from products.models import Product
+from equipos.models import Product
 
 
 def add(request):
     cart = Cart(request.session)
     product = Product.objects.get(id=request.GET.get('id'))
-    cart.add(product, price=product.price)
+    cart.add(product, price=product.precio)
     return HttpResponse("Added")
 
 
@@ -20,4 +20,4 @@ def remove(request):
 
 
 def show(request):
-    return render(request, 'shopping/show-cart.html')
+    return render(request, 'equipos/mostrar-carrito.html')

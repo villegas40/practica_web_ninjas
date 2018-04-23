@@ -1,13 +1,10 @@
 {% extends 'base.html' %}
-{% load carton_tags %}
-{% get_cart as cart %}
-
 {% block title %} Carrito {% endblock %}
-  {% block content %}
-  <h1>Carrito</h1>
-  <h3>Articulos</h3>
-  {% for item in cart.items %}
-    {{item.product.name}}
-  {% endfor %}
-
+{% block content %}
+    <h1>Carrito</h1>
+    <h3>Articulos</h3>
+    {% for item in cart.items %}
+      <p>Articulo: {{item.product.nombre_producto}} Precio: $ {{ item.price }} MX 
+        Canitdad: {{ item.quantity }} </p>
+    {% endfor %}
 {% endblock %}
