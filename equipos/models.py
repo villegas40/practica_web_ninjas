@@ -56,6 +56,7 @@ class Product(models.Model):
     id = models.AutoField(primary_key=True)
     nombre_producto = models.CharField(max_length = 100)
     precio = models.DecimalField(max_digits=6,decimal_places=2)
+    image_url = models.CharField(max_length=100, blank=True)
     cantitad = models.IntegerField()
 
     def __str__(self):

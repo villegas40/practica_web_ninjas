@@ -8,6 +8,8 @@
   <div class="row">
     {% for item in product %}
     <div class="col-sm-3" style="background-color:white;">
+      <p><img src="{{ item.image_url }}" width="200" height="200"></p>
+      <p></p>
       <p>{{ item.nombre_producto }}</p>
       <p>Precio: ${{ item.precio }} MNX</p>
       <input class="btn btn-info" type="button"
