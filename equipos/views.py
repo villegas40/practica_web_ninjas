@@ -16,7 +16,8 @@ from .models import Product
 
 # Create your views here.
 def index(request):
-    return render(request, 'equipos/index.html')
+    product = Product.objects.all()
+    return render(request, 'equipos/index.html', {'product': product})
 
 def equipo_view(request):
     if request.method == "POST":
@@ -116,7 +117,7 @@ def add(request):
     product = Product.objects.get(id=request.GET.get('id'))
     cart.add(product, price=product.precio, quantity=1)
     return HttpResponse("Añadido al carrito.")
-    
+
 @login_required
 def show(request):
     return render(request, 'equipos/mostrar-carrito.html')

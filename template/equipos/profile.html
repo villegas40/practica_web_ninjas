@@ -9,4 +9,7 @@
   <p>Birth date: {{user.perfil.birth_date}}</p>
   <p>Email: {{user.email}}</p>
   Edit Profile: <a href="/edit_profile">Click here</a>
+  {% for item in product %}
+    <p>{{ product.nombre_producto }}</p>
+  {% endfor %}
 {% endblock %}

@@ -7,6 +7,10 @@
     <div class="col-ms-4">
         <h3>Home</h3>
       <p>Homepage</p>
+      {% for item in product %}
+        <p>{{ item.nombre_producto }}</p>
+      {% endfor %}
+      <img src="/home/abiel/Pictures/jose.jpg">
     </div>
   </div>
 </div>
