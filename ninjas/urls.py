@@ -55,5 +55,5 @@ urlpatterns = [
     path('carrito/mostrar/', views.show, name='mostrar_carrito_view'),
     re_path(r'^carrito/agregar/$',views.add, name='agregar_carrito_view'),
     re_path(r'^shopping-cart/', include('shopping.urls')), # Este es test, borrar despues
-
+    path('test/', views.FormSetView, name='FormSetView_view')
 ]

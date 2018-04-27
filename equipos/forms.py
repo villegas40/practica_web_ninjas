@@ -1,8 +1,10 @@
+# Ninjas
 from django import forms
 from .models import EquipoNinja, Perfil
 from django.contrib.auth.forms import UserCreationForm # Registrar usuario
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm # Para editar nuestro user
+from django.contrib.auth.forms import UserChangeForm# Para editar nuestro user
+from django.forms import formset_factory
 
 class EquipoNinjaForm(forms.ModelForm):
     class Meta:
@@ -21,8 +23,17 @@ class SignupForm(UserCreationForm):
         model = User
         fields = ('username', 'user_name', 'user_last', 'birth_date', 'email' , 'password1', 'password2', )
 
+
 class EditProfileForm(UserChangeForm):
     birth_date = forms.DateField(help_text = 'Required. Format: YYYY-MM-DD')
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'password')
+
+
+class Algo(forms.Form):
+    titulo = forms.CharField()
+    texto = forms.CharField()
+
+    def info(self):
+        pass

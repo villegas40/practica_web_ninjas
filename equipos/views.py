@@ -1,3 +1,4 @@
+# Ninjas
 from django.shortcuts import render, redirect # Redirect singup
 from .forms import EquipoNinjaForm
 from django.http import HttpResponseRedirect, HttpResponse
@@ -6,13 +7,25 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm # Importa
 from .forms import SignupForm # Formulario creado para el perfil
 from .forms import EditProfileForm # Formulario para editar perfil
 from django.contrib.auth.models import User
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, FormView
 from .models import Perfil
 from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
 from django.contrib.auth import update_session_auth_hash # Mantener al usuario en sesion despues de cambiar contraseña
 from django.contrib.auth.decorators import login_required # Decorador para que se necesite loguear para accesar ciertas vistas
 from carton.cart import Cart # Importa de la aplicacion de carton_tags
 from .models import Product
+from django.forms import formset_factory
+from .forms import Algo
+
+def FormSetView(FormView):
+    template_name = "equipos/test.html"
+    form_class = formset_factory(Algo, extra = 2)
+    success_url = "/test/"
+
+    def form_valid(self, form):
+        form.info()
+        return HttpResponse('/test/', {'form':form})
+
 
 # Create your views here.
 def index(request):
@@ -121,6 +134,8 @@ def add(request):
 @login_required
 def show(request):
     return render(request, 'equipos/mostrar-carrito.html')
+
+
 '''
 def profile(request, username):
     user = User.objects.get(username = username)
